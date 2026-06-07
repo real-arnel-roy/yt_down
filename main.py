@@ -10,9 +10,12 @@ while True:
 
     def enter_url():
         url = input("Paste the URL - ")
-        with open("download.json", "w") as file:
-            json.dump(url, file, indent=4)
         response = requests.get(url)
+
+        data = {"url": url, "status": response.status_code}
+
+        with open("download.json", "w") as file:
+            json.dump(data, file, indent=4)
 
         print(response.status_code)
         print(response.text[:100])
@@ -20,7 +23,7 @@ while True:
 
     def see_url():
         with open("download.json", "r") as file:
-            down = file.read()
+            down = json.load(file)
 
         print(down)
 
