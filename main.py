@@ -1,3 +1,5 @@
+import json
+
 while True:
     print("---Menu---")
     print("1. Enter URL \n2. See URLs\n3. EXIT")
@@ -7,7 +9,7 @@ while True:
     def enter_url():
         url = input("Paste the URL - ")
         with open("download.json", "w") as file:
-            file.write(url)
+            json.dump(url, file, indent=4)
         print("URL Downloaded")
 
     def see_url():
