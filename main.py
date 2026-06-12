@@ -1,10 +1,18 @@
 import yt_dlp
 
 
+def progress_hooks(d):
+    print(d["_percent_str"])
+
+    if d["status"] == "finished":
+        print("Finished!!!")
+
+
+ydl_opts = {"outtmpl": "download/%(title)s.%(ext)s", "progress_hooks": [progress_hooks]}
+
+
 def download_vid(url):
     try:
-        ydl_opts = {"outtmpl": "download/%(title)s.%(ext)s"}
-
         print("downloading......")
 
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:  # type: ignore
@@ -12,6 +20,7 @@ def download_vid(url):
 
         print("Downloaded")
     except Exception as e:
+        print("Download Failed!!!")
         print(f"Error: {e}")
 
 
@@ -45,7 +54,6 @@ def get_info(url):
 
 url = input("Enter YouTube URL: ")
 while True:
-    url = input("Enter YouTube URL: ")
     print("---Menu---")
     print("1. Get Info \n2. Download\n3. EXIT")
     print("----------")
@@ -53,6 +61,7 @@ while True:
 
     if ch == 1:
         get_info(url)
+
     elif ch == 2:
         download_vid(url)
     elif ch == 3:
