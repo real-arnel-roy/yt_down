@@ -8,7 +8,11 @@ def progress_hooks(d):
         print("Finished!!!")
 
 
-ydl_opts = {"outtmpl": "download/%(title)s.%(ext)s", "progress_hooks": [progress_hooks]}
+ydl_opts = {
+    "outtmpl": "download/%(title)s.%(ext)s",
+    "progress_hooks": [progress_hooks],
+    "format": "bestaudio",
+}
 
 
 def download_vid(url):
