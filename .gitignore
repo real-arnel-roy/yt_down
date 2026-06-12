@@ -1,6 +1,5 @@
-downloads/
 build/
 dist/
+downloads/
 __pycache__/
 *.spec
-*.exe
